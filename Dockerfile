@@ -2,9 +2,16 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# The change is on the line below:
 RUN pip install --no-cache-dir 'litellm[proxy]'
+
+ENV GROQ_API_KEY=${GROQ_API_KEY}
 
 EXPOSE 4000
 
-CMD ["litellm", "--host", "0.0.0.0", "--port", "4000"]
+CMD [
+  "litellm",
+  "--host", "0.0.0.0",
+  "--port", "4000",
+  "--model", "groq/llama-3.3-70b-versatile",
+  "--model", "groq/llama-3.1-8b-instant"
+]
