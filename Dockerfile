@@ -2,7 +2,8 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-RUN pip install --no-cache-dir litellm
+# The change is on the line below:
+RUN pip install --no-cache-dir 'litellm[proxy]'
 
 EXPOSE 4000
 
